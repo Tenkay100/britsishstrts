@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>British First Financial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        :root {
+            --primary: #0A2E5C; /* British Navy Blue */
+            --secondary: #C8102E; /* British Red */
+            --accent: #FFD700; /* Gold accent */
+            --light: #f5f7fa;
+            --dark: #1a1a2e;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), #1E3A8A);
+            color: white;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo {
+            height: 42px;
+            width: 42px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .app-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), #1E3A8A);
+        }
+
+        .login-box {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-title {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+
+        .form-input:focus {
+            border-color: var(--secondary);
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .pin-container {
+            display: none;
+        }
+
+        /* Simple PIN Input Bar */
+        .pin-input-bar {
+            display: flex;
+            align-items: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 0.5rem;
+            background-color: white;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .pin-input-bar:focus-within {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+        }
+
+        .pin-input-bar i {
+            color: var(--gray);
+            margin: 0 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .pin-input-single {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1.8rem;
+            text-align: center;
+            letter-spacing: 1rem;
+            padding: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            background: transparent;
+        }
+
+        .pin-input-single::placeholder {
+            color: #ccc;
+            letter-spacing: normal;
+        }
+
+        .pin-clear-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .pin-clear-btn:hover {
+            color: var(--danger);
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            object-fit: cover;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .user-email {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .session-timer {
+            background: rgba(10, 46, 92, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, var(--primary), #1E3A8A);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .balance-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.3rem;
+        }
+
+        .balance-amount {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .account-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            border: none;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .action-btn i {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .action-btn span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .transactions-list {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .transaction-left {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .transaction-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .transaction-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .transaction-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .transaction-amount {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .amount-positive {
+            color: var(--success);
+        }
+
+        .amount-negative {
+            color: var(--danger);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--gray);
+            transition: var(--transition);
+            padding: 0.3rem;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+
+        .nav-item.active {
+            color: var(--secondary);
+            background-color: rgba(200, 16, 46, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-item span {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .page-content {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 1.5rem;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .modal-body {
+            padding: 1.2rem;
+        }
+
+        .transfer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pending-notice {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .logout-btn:hover {
+            background: rgba(220, 53, 69, 0.2);
+        }
+
+        .view-all-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .view-all-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .download-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .account-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .account-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .account-balance {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .account-number {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Simple PIN Instructions */
+        .pin-instructions {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .currency-symbol {
+            font-size: 1.5rem;
+            vertical-align: top;
+            margin-right: 2px;
+        }
+
+        @media (max-width: 400px) {
+            .login-box {
+                padding: 1.5rem;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .action-btn {
+                padding: 1rem 0.5rem;
+            }
+            
+            .pin-input-single {
+                letter-spacing: 0.5rem;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="logo-container" style="justify-content: center; margin-bottom: 1.5rem;">
+                <div class="logo">BFF</div>
+                <div class="logo-text">British First Financial</div>
+            </div>
+            
+            <div id="emailLogin">
+                <h2 class="login-title">Secure Login</h2>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter your password">
+                </div>
+                
+                <button id="loginEmailBtn" class="login-btn">Continue to Secure Login</button>
+            </div>
+            
+            <div id="pinLogin" class="pin-container">
+                <h2 class="login-title">Enter PIN</h2>
+                
+                <div class="pin-instructions">
+                    Enter your 4-digit PIN to access your account
+                </div>
+                
+                <div class="pin-input-bar">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="pinInput" class="pin-input-single" placeholder="****" maxlength="4">
+                    <button class="pin-clear-btn" id="pinClearBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="pin-instructions" style="font-size: 0.8rem; margin-top: -0.5rem;">
+                    <i class="fas fa-info-circle"></i> For security, your PIN is not stored locally
+                </div>
+                
+                <button id="verifyPinBtn" class="login-btn">Verify PIN</button>
+                <button id="backToEmailBtn" class="login-btn" style="background: var(--gray); margin-top: 0.5rem;">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banking Dashboard -->
+    <div id="dashboard" style="display: none;">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">BFF</div>
+                <div class="logo-text">British First Financial</div>
+            </div>
+        </div>
+        
+        <div class="app-container">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    <img src="" alt="Profile" class="profile-pic" id="profileImage">
+                    <div class="user-details">
+                        <div class="username">Jory Wayne</div>
+                        <div class="user-email">jorywayne@gmail.com</div>
+                    </div>
+                </div>
+                
+                <div class="session-timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer">05:00</span>
+                </div>
+            </div>
+            
+            <!-- Dashboard Page -->
+            <div id="dashboardPage" class="page-content active">
+                <div class="main-content">
+                    <div class="balance-card">
+                        <div class="balance-label">Available Balance</div>
+                        <div class="balance-amount" id="accountBalance">£26,502,280.80</div>
+                        <div class="account-details">
+                            <div>Premier Current Account</div>
+                            <div>****7284</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-actions">
+                        <button class="action-btn" id="quickTransfer">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transfer</span>
+                        </button>
+                        <button class="action-btn" id="quickPay">
+                            <i class="fas fa-file-invoice-pound"></i>
+                            <span>Pay Bills</span>
+                        </button>
+                        <button class="action-btn" id="quickDeposit">
+                            <i class="fas fa-money-check-alt"></i>
+                            <span>Deposit</span>
+                        </button>
+                        <button class="action-btn" id="quickHistory">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </button>
+                    </div>
+                    
+                    <div class="section-title">
+                        <span>Recent Transactions</span>
+                        <button class="logout-btn" id="logoutBtn" style="padding: 0.3rem 0.8rem;">Logout</button>
+                    </div>
+                    
+                    <div class="transactions-list" id="recentTransactions">
+                        <!-- Transactions will be loaded here -->
+                    </div>
+                    
+                    <button class="view-all-btn" id="viewAllTransactions">View All Transactions</button>
+                </div>
+            </div>
+            
+            <!-- Accounts Page -->
+            <div id="accountsPage" class="page-content">
+                <div class="main-content">
+                    <h2 class="section-title">My Accounts</h2>
+                    
+                    <div class="accounts-grid">
+                        <div class="account-card">
+                            <div class="account-name">Premier Current Account</div>
+                            <div class="account-balance">£6,502,280.00</div>
+                            <div class="account-number">Account: ****7284</div>
+                        </div>
+                        
+                        <div class="account-card" style="border-left-color: var(--success);">
+                            <div class="account-name">Savings</div>
+                            <div class="account-balance">£3,850,000.00</div>
+                            <div class="account-number">Account: ****5193 • 4.15% AER</div>
+                        </div>
+                        
+                        <div class="account-card" style="border-left-color: var(--accent);">
+                            <div class="account-name">Investment Portfolio</div>
+                            <div class="account-balance">£26,502,280.80</div>
+                            <div class="account-number">Account: ****6742 • +18.7% YTD</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">
+                        <span>Account Services</span>
+                    </div>
+                    
+                    <div class="quick-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Open Account</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-file-statement"></i>
+                            <span>Statements</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Card Services</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Transfers Page -->
+            <div id="transfersPage" class="page-content">
+                <div class="main-content">
+                    <h2 class="section-title">Transfer Funds</h2>
+                    
+                    <div class="pending-notice">
+                        <i class="fas fa-info-circle"></i> 
+                        <strong>Important:</strong> All transfers are subject to verification and may take 1-2 business days to complete.
+                    </div>
+                    
+                    <form id="transferForm" class="transfer-form">
+                        <div class="form-group">
+                            <label class="form-label" for="fromAccount">From Account</label>
+                            <select id="fromAccount" class="form-input" required>
+                                <option value="current">Premier Current (****7284) - £6,502,280.80</option>
+                                <option value="savings">Premium Savings (****5193) - £3,850,000.00</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="toAccount">To Account</label>
+                            <select id="toAccount" class="form-input" required>
+                                <option value="">Select an account</option>
+                                <option value="internal">To another BFF account</option>
+                                <option value="external">To external bank account</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="transferAmount">Amount (£)</label>
+                            <input type="number" id="transferAmount" class="form-input" placeholder="0.00" min="0.01" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="transferNotes">Account Number</label>
+                            <input type="text" id="transferNotes" class="form-input" placeholder="e.g., 11111111111.">
+                        </div>
+                        
+                        <button type="submit" class="login-btn">Initiate Transfer</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Transactions Page -->
+            <div id="transactionsPage" class="page-content">
+                <div class="main-content">
+                    <div class="section-title">
+                        <span>Transaction History</span>
+                        <button class="download-btn" id="downloadHistory">
+                            <i class="fas fa-download"></i>
+                            <span>Download</span>
+                        </button>
+                    </div>
+                    
+                    <div class="transactions-list" id="fullTransactionHistory">
+                        <!-- Full transaction history will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Services Page -->
+            <div id="servicesPage" class="page-content">
+                <div class="main-content">
+                    <h2 class="section-title">Banking Services</h2>
+                    
+                    <div class="quick-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Bill Pay</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Investments</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-headset"></i>
+                            <span>Support</span>
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <div class="account-card">
+                            <div class="account-name">24/7 Customer Support</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                <p>Call us anytime: 0800 123 4567</p>
+                                <p>Secure messaging available in app</p>
+                            </div>
+                        </div>
+                        
+                        <div class="account-card" style="margin-top: 1rem;">
+                            <div class="account-name">Security Center</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                <p>• Two-factor authentication enabled</p>
+                                <p>• Last login: Today, 14:30 GMT</p>
+                                <p>• No suspicious activity detected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a class="nav-item active" id="navDashboard">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a class="nav-item" id="navAccounts">
+                <i class="fas fa-university"></i>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-item" id="navTransfers">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transfers</span>
+            </a>
+            <a class="nav-item" id="navTransactions">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+            <a class="nav-item" id="navServices">
+                <i class="fas fa-concierge-bell"></i>
+                <span>Services</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Transfer Confirmation Modal -->
+    <div id="transferModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Transfer Initiated</h3>
+                <button class="close-btn" id="closeTransferModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="font-size: 3.5rem; color: var(--warning); margin-bottom: 1rem;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Transfer Pending Verification</h3>
+                    <p style="color: var(--gray);">Your transfer has been initiated and is pending verification.</p>
+                </div>
+                
+                <div class="pending-notice">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    <strong>Important:</strong> Your transfer will be completed once verified. The amount will not be deducted from your account until verification is complete. You will receive a notification once the transfer is processed.
+                </div>
+                
+                <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(0, 0, 0, 0.03); border-radius: 8px;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Transfer Details</h4>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Amount:</span>
+                        <span id="transferModalAmount" style="font-weight: 600;"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>From Account:</span>
+                        <span id="transferModalFrom" style="font-weight: 600;"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>To Account:</span>
+                        <span id="transferModalTo" style="font-weight: 600;"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Reference:</span>
+                        <span id="transferModalRef" style="font-weight: 600;">TRX-984523</span>
+                    </div>
+                </div>
+                
+                <button id="transferModalOk" class="login-btn" style="margin-top: 1.5rem;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Details Modal -->
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Transaction Details</h3>
+                <button class="close-btn" id="closeHistoryModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="transactionDetails">
+                    <!-- Transaction details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User credentials
+        const USER_EMAIL = "jorywayne@gmail.com";
+        const USER_PASSWORD = "$hel23308";
+        const USER_PIN = "2141";
+        const ACCOUNT_BALANCE = 26502280.80;
+        
+        // Transaction history data (2012-2018)
+        const transactions = [
+            { date: "May 15, 2012", description: "Business Sale Proceeds", amount: 8500000.00, type: "credit", category: "Business", icon: "fa-briefcase" },
+            { date: "Aug 22, 2012", description: "Property Investment", amount: -2500000.00, type: "debit", category: "Real Estate", icon: "fa-home" },
+            { date: "Nov 8, 2012", description: "Quarterly Dividend", amount: 125000.00, type: "credit", category: "Investment", icon: "fa-chart-line" },
+            { date: "Mar 12, 2013", description: "London Flat Purchase", amount: -1800000.00, type: "debit", category: "Real Estate", icon: "fa-building" },
+            { date: "Jun 28, 2013", description: "Tech Investment", amount: -750000.00, type: "debit", category: "Investment", icon: "fa-laptop" },
+            { date: "Sep 5, 2013", description: "Consulting Fee", amount: 320000.00, type: "credit", category: "Business", icon: "fa-handshake" },
+            { date: "Jan 15, 2014", description: "Annual Bonus", amount: 1500000.00, type: "credit", category: "Income", icon: "fa-award" },
+            { date: "Apr 22, 2014", description: "Charity Donation", amount: -500000.00, type: "debit", category: "Charity", icon: "fa-hand-holding-heart" },
+            { date: "Jul 18, 2014", description: "Investment Return", amount: 2850000.00, type: "credit", category: "Investment", icon: "fa-chart-pie" },
+            { date: "Oct 3, 2014", description: "Car Purchase", amount: -85000.00, type: "debit", category: "Auto", icon: "fa-car" },
+            { date: "Feb 14, 2015", description: "Property Sale", amount: 4200000.00, type: "credit", category: "Real Estate", icon: "fa-home" },
+            { date: "May 9, 2015", description: "Stock Dividend", amount: 980000.00, type: "credit", category: "Investment", icon: "fa-chart-bar" },
+            { date: "Aug 27, 2015", description: "Business Expansion", amount: -1500000.00, type: "debit", category: "Business", icon: "fa-expand" },
+            { date: "Dec 12, 2015", description: "Year-End Bonus", amount: 2200000.00, type: "credit", category: "Income", icon: "fa-gift" },
+            { date: "Mar 8, 2016", description: "Investment Fund", amount: -3000000.00, type: "debit", category: "Investment", icon: "fa-piggy-bank" },
+            { date: "Jun 18, 2016", description: "Consulting Payment", amount: 750000.00, type: "credit", category: "Business", icon: "fa-file-contract" },
+            { date: "Sep 5, 2016", description: "Property Management", amount: -120000.00, type: "debit", category: "Real Estate", icon: "fa-tools" },
+            { date: "Nov 22, 2016", description: "Dividend Payment", amount: 1650000.00, type: "credit", category: "Investment", icon: "fa-money-bill-wave" },
+            { date: "Feb 14, 2017", description: "Business Acquisition", amount: -5000000.00, type: "debit", category: "Business", icon: "fa-store" },
+            { date: "May 8, 2017", description: "Royalty Payment", amount: 1850000.00, type: "credit", category: "Royalties", icon: "fa-crown" },
+            { date: "Aug 19, 2017", description: "Savings Transfer", amount: -2000000.00, type: "debit", category: "Savings", icon: "fa-university" },
+            { date: "Nov 5, 2017", description: "Investment Return", amount: 3800000.00, type: "credit", category: "Investment", icon: "fa-chart-line" },
+            { date: "Jan 18, 2018", description: "Property Sale", amount: 6500000.00, type: "credit", category: "Real Estate", icon: "fa-home" },
+            { date: "Apr 12, 2018", description: "Business Sale", amount: 12000000.00, type: "credit", category: "Business", icon: "fa-handshake" },
+            { date: "Jul 28, 2018", description: "Final Deposit", amount: 26502280.80, type: "credit", category: "Investment", icon: "fa-pound-sign" }
+        ];
+        
+        // DOM elements
+        const loginPage = document.getElementById('loginPage');
+        const dashboard = document.getElementById('dashboard');
+        const emailLogin = document.getElementById('emailLogin');
+        const pinLogin = document.getElementById('pinLogin');
+        const loginEmailBtn = document.getElementById('loginEmailBtn');
+        const verifyPinBtn = document.getElementById('verifyPinBtn');
+        const backToEmailBtn = document.getElementById('backToEmailBtn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const pinInput = document.getElementById('pinInput');
+        const pinClearBtn = document.getElementById('pinClearBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const timerElement = document.getElementById('timer');
+        const accountBalance = document.getElementById('accountBalance');
+        const recentTransactions = document.getElementById('recentTransactions');
+        const fullTransactionHistory = document.getElementById('fullTransactionHistory');
+        const transferForm = document.getElementById('transferForm');
+        const transferModal = document.getElementById('transferModal');
+        const closeTransferModal = document.getElementById('closeTransferModal');
+        const transferModalOk = document.getElementById('transferModalOk');
+        const historyModal = document.getElementById('historyModal');
+        const closeHistoryModal = document.getElementById('closeHistoryModal');
+        const transactionDetails = document.getElementById('transactionDetails');
+        const downloadHistory = document.getElementById('downloadHistory');
+        
+        // Navigation elements
+        const navDashboard = document.getElementById('navDashboard');
+        const navAccounts = document.getElementById('navAccounts');
+        const navTransfers = document.getElementById('navTransfers');
+        const navTransactions = document.getElementById('navTransactions');
+        const navServices = document.getElementById('navServices');
+        
+        // Page elements
+        const dashboardPage = document.getElementById('dashboardPage');
+        const accountsPage = document.getElementById('accountsPage');
+        const transfersPage = document.getElementById('transfersPage');
+        const transactionsPage = document.getElementById('transactionsPage');
+        const servicesPage = document.getElementById('servicesPage');
+        
+        // Quick action buttons
+        const quickTransfer = document.getElementById('quickTransfer');
+        const quickPay = document.getElementById('quickPay');
+        const quickDeposit = document.getElementById('quickDeposit');
+        const quickHistory = document.getElementById('quickHistory');
+        const viewAllTransactions = document.getElementById('viewAllTransactions');
+        
+        // Session timer
+        let sessionTimer;
+        let sessionTime = 300; // 5 minutes in seconds
+        
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set profile image
+            const profileImage = document.getElementById('profileImage');
+            
+        
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Load recent transactions
+            loadRecentTransactions();
+            
+            // Load full transaction history
+            loadFullTransactionHistory();
+        });
+        
+        function setupEventListeners() {
+            // Login button
+            loginEmailBtn.addEventListener('click', handleEmailLogin);
+            
+            // PIN verification
+            verifyPinBtn.addEventListener('click', handlePinVerification);
+            
+            // Clear PIN button
+            pinClearBtn.addEventListener('click', function() {
+                pinInput.value = '';
+                pinInput.focus();
+            });
+            
+            // Back to email login
+            backToEmailBtn.addEventListener('click', function() {
+                emailLogin.style.display = 'block';
+                pinLogin.style.display = 'none';
+                pinInput.value = '';
+            });
+            
+            // Auto-submit PIN when 4 digits are entered
+            pinInput.addEventListener('input', function() {
+                // Format as dots for security
+                if (this.value.length === 4) {
+                    setTimeout(() => {
+                        handlePinVerification();
+                    }, 300);
+                }
+            });
+            
+            // Logout button
+            logoutBtn.addEventListener('click', handleLogout);
+            
+            // Navigation buttons
+            navDashboard.addEventListener('click', () => showPage('dashboard'));
+            navAccounts.addEventListener('click', () => showPage('accounts'));
+            navTransfers.addEventListener('click', () => showPage('transfers'));
+            navTransactions.addEventListener('click', () => showPage('transactions'));
+            navServices.addEventListener('click', () => showPage('services'));
+            
+            // Quick action buttons
+            quickTransfer.addEventListener('click', () => showPage('transfers'));
+            quickPay.addEventListener('click', () => showPage('services'));
+            quickDeposit.addEventListener('click', () => alert('Mobile deposit feature coming soon!'));
+            quickHistory.addEventListener('click', () => showPage('transactions'));
+            viewAllTransactions.addEventListener('click', () => showPage('transactions'));
+            
+            // Transfer form
+            transferForm.addEventListener('submit', handleTransfer);
+            
+            // Modal close buttons
+            closeTransferModal.addEventListener('click', () => {
+                transferModal.style.display = 'none';
+            });
+            
+            transferModalOk.addEventListener('click', () => {
+                transferModal.style.display = 'none';
+            });
+            
+            closeHistoryModal.addEventListener('click', () => {
+                historyModal.style.display = 'none';
+            });
+            
+            // Download history button
+            downloadHistory.addEventListener('click', downloadTransactionHistory);
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === transferModal) {
+                    transferModal.style.display = 'none';
+                }
+                if (e.target === historyModal) {
+                    historyModal.style.display = 'none';
+                }
+            });
+        }
+        
+        function handleEmailLogin() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            
+            if (email === USER_EMAIL && password === USER_PASSWORD) {
+                // Show PIN login
+                emailLogin.style.display = 'none';
+                pinLogin.style.display = 'block';
+                
+                // Clear password field for security
+                passwordInput.value = '';
+                
+                // Focus PIN input
+                setTimeout(() => {
+                    pinInput.focus();
+                }, 100);
+            } else {
+                alert('Invalid email or password. Please try again.');
+                // Clear fields
+                passwordInput.value = '';
+            }
+        }
+        
+        function handlePinVerification() {
+            const enteredPin = pinInput.value;
+            
+            if (enteredPin === USER_PIN) {
+                // Clear PIN field for security
+                pinInput.value = '';
+                
+                // Show dashboard and hide login
+                loginPage.style.display = 'none';
+                dashboard.style.display = 'block';
+                
+                // Start session timer
+                startSessionTimer();
+                
+                // Show welcome message
+                setTimeout(() => {
+                    alert('Welcome to British First Financial, Jory Wayne!');
+                }, 300);
+            } else {
+                alert('Invalid PIN. Please try again.');
+                // Clear PIN field
+                pinInput.value = '';
+                // Focus PIN input
+                pinInput.focus();
+            }
+        }
+        
+        function startSessionTimer() {
+            // Reset timer
+            sessionTime = 300;
+            updateTimerDisplay();
+            
+            // Clear any existing timer
+            if (sessionTimer) {
+                clearInterval(sessionTimer);
+            }
+            
+            // Start new timer
+            sessionTimer = setInterval(() => {
+                sessionTime--;
+                updateTimerDisplay();
+                
+                if (sessionTime <= 0) {
+                    handleLogout();
+                }
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(sessionTime / 60);
+            const seconds = sessionTime % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when less than 1 minute remaining
+            if (sessionTime < 60) {
+                timerElement.style.color = '#ff6b6b';
+                timerElement.style.backgroundColor = 'rgba(255, 107, 107, 0.1)';
+            } else {
+                timerElement.style.color = 'var(--primary)';
+                timerElement.style.backgroundColor = 'rgba(0, 31, 63, 0.1)';
+            }
+        }
+        
+        function handleLogout() {
+            // Clear session timer
+            if (sessionTimer) {
+                clearInterval(sessionTimer);
+            }
+            
+            // Reset login form
+            emailLogin.style.display = 'block';
+            pinLogin.style.display = 'none';
+            passwordInput.value = '';
+            pinInput.value = '';
+            
+            // Show login page and hide dashboard
+            loginPage.style.display = 'flex';
+            dashboard.style.display = 'none';
+            
+            // Reset to dashboard page
+            showPage('dashboard');
+        }
+        
+        function showPage(page) {
+            // Hide all pages
+            dashboardPage.classList.remove('active');
+            accountsPage.classList.remove('active');
+            transfersPage.classList.remove('active');
+            transactionsPage.classList.remove('active');
+            servicesPage.classList.remove('active');
+            
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected page and activate corresponding nav item
+            switch(page) {
+                case 'dashboard':
+                    dashboardPage.classList.add('active');
+                    navDashboard.classList.add('active');
+                    break;
+                case 'accounts':
+                    accountsPage.classList.add('active');
+                    navAccounts.classList.add('active');
+                    break;
+                case 'transfers':
+                    transfersPage.classList.add('active');
+                    navTransfers.classList.add('active');
+                    break;
+                case 'transactions':
+                    transactionsPage.classList.add('active');
+                    navTransactions.classList.add('active');
+                    break;
+                case 'services':
+                    servicesPage.classList.add('active');
+                    navServices.classList.add('active');
+                    break;
+            }
+            
+            // Reset session timer on any interaction
+            startSessionTimer();
+        }
+        
+        function loadRecentTransactions() {
+            // Clear current content
+            recentTransactions.innerHTML = '';
+            
+            // Show only the last 4 transactions
+            const recent = transactions.slice(-4);
+            
+            recent.forEach(transaction => {
+                const transactionElement = document.createElement('div');
+                transactionElement.className = 'transaction-item';
+                transactionElement.style.cursor = 'pointer';
+                
+                // Determine icon color based on transaction type
+                const iconColor = transaction.amount > 0 ? '#28a745' : '#dc3545';
+                
+                transactionElement.innerHTML = `
+                    <div class="transaction-left">
+                        <div class="transaction-icon" style="background-color: ${iconColor}20; color: ${iconColor};">
+                            <i class="fas ${transaction.icon}"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <div class="transaction-name">${transaction.description}</div>
+                            <div class="transaction-date">${transaction.date}</div>
+                        </div>
+                    </div>
+                    <div class="transaction-amount ${transaction.amount > 0 ? 'amount-positive' : 'amount-negative'}">
+                        ${transaction.amount > 0 ? '+' : '-'}£${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    </div>
+                `;
+                
+                // Add click event to show transaction details
+                transactionElement.addEventListener('click', () => {
+                    showTransactionDetails(transaction);
+                });
+                
+                recentTransactions.appendChild(transactionElement);
+            });
+        }
+        
+        function loadFullTransactionHistory() {
+            // Clear current content
+            fullTransactionHistory.innerHTML = '';
+            
+            // Sort transactions by date (newest first)
+            const sortedTransactions = [...transactions].reverse();
+            
+            sortedTransactions.forEach(transaction => {
+                const transactionElement = document.createElement('div');
+                transactionElement.className = 'transaction-item';
+                transactionElement.style.cursor = 'pointer';
+                
+                // Determine icon color based on transaction type
+                const iconColor = transaction.amount > 0 ? '#28a745' : '#dc3545';
+                
+                transactionElement.innerHTML = `
+                    <div class="transaction-left">
+                        <div class="transaction-icon" style="background-color: ${iconColor}20; color: ${iconColor};">
+                            <i class="fas ${transaction.icon}"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <div class="transaction-name">${transaction.description}</div>
+                            <div class="transaction-date">${transaction.date}</div>
+                        </div>
+                    </div>
+                    <div class="transaction-amount ${transaction.amount > 0 ? 'amount-positive' : 'amount-negative'}">
+                        ${transaction.amount > 0 ? '+' : '-'}£${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    </div>
+                `;
+                
+                // Add click event to show transaction details
+                transactionElement.addEventListener('click', () => {
+                    showTransactionDetails(transaction);
+                });
+                
+                fullTransactionHistory.appendChild(transactionElement);
+            });
+        }
+        
+        function showTransactionDetails(transaction) {
+            // Populate transaction details
+            transactionDetails.innerHTML = `
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="font-size: 3rem; color: ${transaction.amount > 0 ? 'var(--success)' : 'var(--danger)'}; margin-bottom: 1rem;">
+                        <i class="fas fa-${transaction.amount > 0 ? 'arrow-down' : 'arrow-up'}"></i>
+                    </div>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">${transaction.description}</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: ${transaction.amount > 0 ? 'var(--success)' : 'var(--danger)'};">
+                        ${transaction.amount > 0 ? '+' : '-'}£${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                        <span style="font-weight: 600;">Date:</span>
+                        <span>${transaction.date}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                        <span style="font-weight: 600;">Type:</span>
+                        <span>${transaction.type === 'credit' ? 'Credit' : 'Debit'}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                        <span style="font-weight: 600;">Category:</span>
+                        <span>${transaction.category}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span style="font-weight: 600;">Status:</span>
+                        <span style="color: var(--success); font-weight: 600;">Completed</span>
+                    </div>
+                </div>
+                
+                <button class="login-btn" onclick="historyModal.style.display='none'" style="margin-top: 1.5rem;">Close</button>
+            `;
+            
+            // Show modal
+            historyModal.style.display = 'flex';
+        }
+        
+        function handleTransfer(e) {
+            e.preventDefault();
+            
+            const fromAccount = document.getElementById('fromAccount').value;
+            const toAccount = document.getElementById('toAccount').value;
+            const amount = parseFloat(document.getElementById('transferAmount').value);
+            const notes = document.getElementById('transferNotes').value;
+            
+            // Validate inputs
+            if (!fromAccount || !toAccount || !amount || amount <= 0) {
+                alert('Please fill in all required fields with valid values.');
+                return;
+            }
+            
+            if (amount > ACCOUNT_BALANCE) {
+                alert('Insufficient funds for this transfer.');
+                return;
+            }
+            
+            // Populate transfer modal
+            document.getElementById('transferModalAmount').textContent = '£' + amount.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('transferModalFrom').textContent = fromAccount.includes('Current') ? 'Premier Current' : 'Premium Savings';
+            document.getElementById('transferModalTo').textContent = toAccount === 'internal' ? 'Another BFF Account' : 'External Bank Account';
+            
+            // Generate a reference number
+            const refNumber = 'TRX-' + Date.now().toString().slice(-6);
+            document.getElementById('transferModalRef').textContent = refNumber;
+            
+            // Show transfer modal
+            transferModal.style.display = 'flex';
+            
+            // Reset form
+            transferForm.reset();
+            
+            // Reset session timer
+            startSessionTimer();
+        }
+        
+        function downloadTransactionHistory() {
+            // Create CSV content
+            let csvContent = "Date,Description,Amount,Type,Category\n";
+            
+            transactions.forEach(transaction => {
+                csvContent += `${transaction.date},${transaction.description},£${transaction.amount},${transaction.type},${transaction.category}\n`;
+            });
+            
+            // Create a Blob with the CSV content
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            
+            // Create a temporary link element to trigger the download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'BFF_Transaction_History_' + new Date().toISOString().slice(0, 10) + '.csv';
+            
+            // Trigger the download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Release the Blob URL
+            URL.revokeObjectURL(url);
+            
+            // Show confirmation
+            alert('Transaction history downloaded successfully!');
+            
+            // Reset session timer
+            startSessionTimer();
+        }
+        
+        // Allow pressing Enter to submit forms
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleEmailLogin();
+            }
+        });
+        
+        pinInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handlePinVerification();
+            }
+        });
+    </script>
+</body>
+</html>
