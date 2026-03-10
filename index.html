@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>British First Financial</title>
+    <title>American First Financial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,9 +14,9 @@
         }
 
         :root {
-            --primary: #0A2E5C; /* British Navy Blue */
-            --secondary: #C8102E; /* British Red */
-            --accent: #FFD700; /* Gold accent */
+            --primary: #001f3f;
+            --secondary: #0056b3;
+            --accent: #ff6b00;
             --light: #f5f7fa;
             --dark: #1a1a2e;
             --success: #28a745;
@@ -38,7 +38,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary), #1E3A8A);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 1rem 1.5rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -89,7 +89,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), #1E3A8A);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         .login-box {
@@ -140,7 +140,7 @@
             border-color: var(--secondary);
             outline: none;
             background-color: white;
-            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
         }
 
         .login-btn {
@@ -180,7 +180,7 @@
 
         .pin-input-bar:focus-within {
             border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
         }
 
         .pin-input-bar i {
@@ -263,7 +263,7 @@
         }
 
         .session-timer {
-            background: rgba(10, 46, 92, 0.1);
+            background: rgba(0, 31, 63, 0.1);
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -281,7 +281,7 @@
         }
 
         .balance-card {
-            background: linear-gradient(135deg, var(--primary), #1E3A8A);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-radius: var(--border-radius);
             padding: 1.5rem;
@@ -455,7 +455,7 @@
 
         .nav-item.active {
             color: var(--secondary);
-            background-color: rgba(200, 16, 46, 0.1);
+            background-color: rgba(0, 86, 179, 0.1);
         }
 
         .nav-item i {
@@ -636,12 +636,6 @@
             margin-bottom: 1.5rem;
         }
 
-        .currency-symbol {
-            font-size: 1.5rem;
-            vertical-align: top;
-            margin-right: 2px;
-        }
-
         @media (max-width: 400px) {
             .login-box {
                 padding: 1.5rem;
@@ -668,8 +662,8 @@
     <div id="loginPage" class="login-container">
         <div class="login-box">
             <div class="logo-container" style="justify-content: center; margin-bottom: 1.5rem;">
-                <div class="logo">BFF</div>
-                <div class="logo-text">British First Financial</div>
+                <div class="logo">AFF</div>
+                <div class="logo-text">American First Financial</div>
             </div>
             
             <div id="emailLogin">
@@ -719,18 +713,18 @@
     <div id="dashboard" style="display: none;">
         <div class="header">
             <div class="logo-container">
-                <div class="logo">BFF</div>
-                <div class="logo-text">British First Financial</div>
+                <div class="logo">AFF</div>
+                <div class="logo-text">American First Financial</div>
             </div>
         </div>
         
         <div class="app-container">
             <div class="dashboard-header">
                 <div class="user-info">
-                    <img src="" alt="Profile" class="profile-pic" id="profileImage">
+                    <img src="profile2.jpg" alt="Profile" class="profile-pic" id="profileImage">
                     <div class="user-details">
-                        <div class="username">Jory Wayne</div>
-                        <div class="user-email">jorywayne@gmail.com</div>
+                        <div class="username">Rosalind Honest</div>
+                        <div class="user-email">Rosalindhonest6@gmail.com</div>
                     </div>
                 </div>
                 
@@ -745,10 +739,10 @@
                 <div class="main-content">
                     <div class="balance-card">
                         <div class="balance-label">Available Balance</div>
-                        <div class="balance-amount" id="accountBalance">£26,502,280.80</div>
+                        <div class="balance-amount" id="accountBalance">$5,421,751.09</div>
                         <div class="account-details">
-                            <div>Premier Current Account</div>
-                            <div>****7284</div>
+                            <div>Premier Checking</div>
+                            <div>****4532</div>
                         </div>
                     </div>
                     
@@ -758,7 +752,7 @@
                             <span>Transfer</span>
                         </button>
                         <button class="action-btn" id="quickPay">
-                            <i class="fas fa-file-invoice-pound"></i>
+                            <i class="fas fa-file-invoice-dollar"></i>
                             <span>Pay Bills</span>
                         </button>
                         <button class="action-btn" id="quickDeposit">
@@ -791,21 +785,21 @@
                     
                     <div class="accounts-grid">
                         <div class="account-card">
-                            <div class="account-name">Premier Current Account</div>
-                            <div class="account-balance">£6,502,280.00</div>
-                            <div class="account-number">Account: ****7284</div>
+                            <div class="account-name">Premier Checking</div>
+                            <div class="account-balance">$5,421,751.09</div>
+                            <div class="account-number">Account: ****4532</div>
                         </div>
                         
                         <div class="account-card" style="border-left-color: var(--success);">
-                            <div class="account-name">Savings</div>
-                            <div class="account-balance">£3,850,000.00</div>
-                            <div class="account-number">Account: ****5193 • 4.15% AER</div>
+                            <div class="account-name">High-Yield Savings</div>
+                            <div class="account-balance">$2,105.28</div>
+                            <div class="account-number">Account: ****7841 • 3.25% APY</div>
                         </div>
                         
                         <div class="account-card" style="border-left-color: var(--accent);">
-                            <div class="account-name">Investment Portfolio</div>
-                            <div class="account-balance">£26,502,280.80</div>
-                            <div class="account-number">Account: ****6742 • +18.7% YTD</div>
+                            <div class="account-name">Investment Account</div>
+                            <div class="account-balance">$1,395.17</div>
+                            <div class="account-number">Account: ****9125 • +12.4% YTD</div>
                         </div>
                     </div>
                     
@@ -848,8 +842,8 @@
                         <div class="form-group">
                             <label class="form-label" for="fromAccount">From Account</label>
                             <select id="fromAccount" class="form-input" required>
-                                <option value="current">Premier Current (****7284) - £6,502,280.80</option>
-                                <option value="savings">Premium Savings (****5193) - £3,850,000.00</option>
+                                <option value="checking">Premier Checking (****4532) - $5,421,751.09</option>
+                                <option value="savings">High-Yield Savings (****7841) - $2,105.28</option>
                             </select>
                         </div>
                         
@@ -857,19 +851,31 @@
                             <label class="form-label" for="toAccount">To Account</label>
                             <select id="toAccount" class="form-input" required>
                                 <option value="">Select an account</option>
-                                <option value="internal">To another BFF account</option>
+                                <option value="internal">To another AFF account</option>
                                 <option value="external">To external bank account</option>
                             </select>
                         </div>
                         
+                        <!-- New Account Number Field -->
+                        <div class="form-group" id="accountNumberGroup" style="display: none;">
+                            <label class="form-label" for="accountNumber">Account Number</label>
+                            <input type="text" id="accountNumber" class="form-input" placeholder="Enter account number">
+                        </div>
+                        
+                        <!-- New Routing Number Field -->
+                        <div class="form-group" id="routingNumberGroup" style="display: none;">
+                            <label class="form-label" for="routingNumber">Routing Number</label>
+                            <input type="text" id="routingNumber" class="form-input" placeholder="Enter routing number">
+                        </div>
+                        
                         <div class="form-group">
-                            <label class="form-label" for="transferAmount">Amount (£)</label>
+                            <label class="form-label" for="transferAmount">Amount ($)</label>
                             <input type="number" id="transferAmount" class="form-input" placeholder="0.00" min="0.01" step="0.01" required>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="transferNotes">Account Number</label>
-                            <input type="text" id="transferNotes" class="form-input" placeholder="e.g., 11111111111.">
+                            <label class="form-label" for="transferNotes">Description (Optional)</label>
+                            <input type="text" id="transferNotes" class="form-input" placeholder="e.g., Rent payment, Gift, etc.">
                         </div>
                         
                         <button type="submit" class="login-btn">Initiate Transfer</button>
@@ -922,7 +928,7 @@
                         <div class="account-card">
                             <div class="account-name">24/7 Customer Support</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem;">
-                                <p>Call us anytime: 0800 123 4567</p>
+                                <p>Call us anytime: 1-800-AFF-BANK</p>
                                 <p>Secure messaging available in app</p>
                             </div>
                         </div>
@@ -931,7 +937,7 @@
                             <div class="account-name">Security Center</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem;">
                                 <p>• Two-factor authentication enabled</p>
-                                <p>• Last login: Today, 14:30 GMT</p>
+                                <p>• Last login: Today, 10:30 AM</p>
                                 <p>• No suspicious activity detected</p>
                             </div>
                         </div>
@@ -1028,38 +1034,23 @@
 
     <script>
         // User credentials
-        const USER_EMAIL = "jorywayne@gmail.com";
+        const USER_EMAIL = "Rosalindhonest6@gmail.com";
         const USER_PASSWORD = "$hel23308";
-        const USER_PIN = "2141";
-        const ACCOUNT_BALANCE = 26502280.80;
+        const USER_PIN = "4121";
+        const ACCOUNT_BALANCE = 40080.98;
         
-        // Transaction history data (2012-2018)
+        // Transaction history data
         const transactions = [
-            { date: "May 15, 2012", description: "Business Sale Proceeds", amount: 8500000.00, type: "credit", category: "Business", icon: "fa-briefcase" },
-            { date: "Aug 22, 2012", description: "Property Investment", amount: -2500000.00, type: "debit", category: "Real Estate", icon: "fa-home" },
-            { date: "Nov 8, 2012", description: "Quarterly Dividend", amount: 125000.00, type: "credit", category: "Investment", icon: "fa-chart-line" },
-            { date: "Mar 12, 2013", description: "London Flat Purchase", amount: -1800000.00, type: "debit", category: "Real Estate", icon: "fa-building" },
-            { date: "Jun 28, 2013", description: "Tech Investment", amount: -750000.00, type: "debit", category: "Investment", icon: "fa-laptop" },
-            { date: "Sep 5, 2013", description: "Consulting Fee", amount: 320000.00, type: "credit", category: "Business", icon: "fa-handshake" },
-            { date: "Jan 15, 2014", description: "Annual Bonus", amount: 1500000.00, type: "credit", category: "Income", icon: "fa-award" },
-            { date: "Apr 22, 2014", description: "Charity Donation", amount: -500000.00, type: "debit", category: "Charity", icon: "fa-hand-holding-heart" },
-            { date: "Jul 18, 2014", description: "Investment Return", amount: 2850000.00, type: "credit", category: "Investment", icon: "fa-chart-pie" },
-            { date: "Oct 3, 2014", description: "Car Purchase", amount: -85000.00, type: "debit", category: "Auto", icon: "fa-car" },
-            { date: "Feb 14, 2015", description: "Property Sale", amount: 4200000.00, type: "credit", category: "Real Estate", icon: "fa-home" },
-            { date: "May 9, 2015", description: "Stock Dividend", amount: 980000.00, type: "credit", category: "Investment", icon: "fa-chart-bar" },
-            { date: "Aug 27, 2015", description: "Business Expansion", amount: -1500000.00, type: "debit", category: "Business", icon: "fa-expand" },
-            { date: "Dec 12, 2015", description: "Year-End Bonus", amount: 2200000.00, type: "credit", category: "Income", icon: "fa-gift" },
-            { date: "Mar 8, 2016", description: "Investment Fund", amount: -3000000.00, type: "debit", category: "Investment", icon: "fa-piggy-bank" },
-            { date: "Jun 18, 2016", description: "Consulting Payment", amount: 750000.00, type: "credit", category: "Business", icon: "fa-file-contract" },
-            { date: "Sep 5, 2016", description: "Property Management", amount: -120000.00, type: "debit", category: "Real Estate", icon: "fa-tools" },
-            { date: "Nov 22, 2016", description: "Dividend Payment", amount: 1650000.00, type: "credit", category: "Investment", icon: "fa-money-bill-wave" },
-            { date: "Feb 14, 2017", description: "Business Acquisition", amount: -5000000.00, type: "debit", category: "Business", icon: "fa-store" },
-            { date: "May 8, 2017", description: "Royalty Payment", amount: 1850000.00, type: "credit", category: "Royalties", icon: "fa-crown" },
-            { date: "Aug 19, 2017", description: "Savings Transfer", amount: -2000000.00, type: "debit", category: "Savings", icon: "fa-university" },
-            { date: "Nov 5, 2017", description: "Investment Return", amount: 3800000.00, type: "credit", category: "Investment", icon: "fa-chart-line" },
-            { date: "Jan 18, 2018", description: "Property Sale", amount: 6500000.00, type: "credit", category: "Real Estate", icon: "fa-home" },
-            { date: "Apr 12, 2018", description: "Business Sale", amount: 12000000.00, type: "credit", category: "Business", icon: "fa-handshake" },
-            { date: "Jul 28, 2018", description: "Final Deposit", amount: 26502280.80, type: "credit", category: "Investment", icon: "fa-pound-sign" }
+            { date: "Aug 8, 2024", description: "Coffee Shop Purchase", amount: -500.00, type: "debit", category: "Dining", icon: "fa-coffee" },
+            { date: "Aug 15, 2024", description: "Salary Deposit", amount: 8000.00, type: "credit", category: "Income", icon: "fa-money-bill-wave" },
+            { date: "Aug 22, 2024", description: "Bonus Payment", amount: 30000.00, type: "credit", category: "Income", icon: "fa-gift" },
+            { date: "Sep 5, 2024", description: "Grocery Store", amount: -800.00, type: "debit", category: "Shopping", icon: "fa-shopping-cart" },
+            { date: "Sep 12, 2024", description: "Online Shopping", amount: -908.00, type: "debit", category: "Shopping", icon: "fa-shopping-bag" },
+            { date: "Oct 10, 2024", description: "Dividend Payment", amount: 2500.00, type: "credit", category: "Investment", icon: "fa-chart-line" },
+            { date: "Nov 18, 2024", description: "Car Payment", amount: -11200.00, type: "debit", category: "Auto", icon: "fa-car" },
+            { date: "Jan 5, 2024", description: "Year-End Bonus", amount: 15000.00, type: "credit", category: "Income", icon: "fa-award" },
+            { date: "Feb 15, 2025", description: "Charity Donation", amount: -2500.00, type: "debit", category: "Other", icon: "fa-hand-holding-heart" },
+            { date: "Feb 14, 2026", description: "Deposit", amount: 36600.00, type: "credit", category: "Deposit", icon: "fa-chart-pie" }
         ];
         
         // DOM elements
@@ -1088,6 +1079,13 @@
         const transactionDetails = document.getElementById('transactionDetails');
         const downloadHistory = document.getElementById('downloadHistory');
         
+        // New DOM elements for account and routing number
+        const toAccount = document.getElementById('toAccount');
+        const accountNumberGroup = document.getElementById('accountNumberGroup');
+        const routingNumberGroup = document.getElementById('routingNumberGroup');
+        const accountNumber = document.getElementById('accountNumber');
+        const routingNumber = document.getElementById('routingNumber');
+        
         // Navigation elements
         const navDashboard = document.getElementById('navDashboard');
         const navAccounts = document.getElementById('navAccounts');
@@ -1115,10 +1113,13 @@
         
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            // Set profile image
+            // Set profile image (using placeholder if local image not available)
             const profileImage = document.getElementById('profileImage');
+            profileImage.onerror = function() {
+                this.src = "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80";
+            };
             
-        
+           
             
             // Setup event listeners
             setupEventListeners();
@@ -1205,6 +1206,23 @@
                     historyModal.style.display = 'none';
                 }
             });
+            
+            // Show/hide account and routing number fields based on account selection
+            toAccount.addEventListener('change', function() {
+                if (this.value === 'external') {
+                    accountNumberGroup.style.display = 'block';
+                    routingNumberGroup.style.display = 'block';
+                    accountNumber.setAttribute('required', 'required');
+                    routingNumber.setAttribute('required', 'required');
+                } else {
+                    accountNumberGroup.style.display = 'none';
+                    routingNumberGroup.style.display = 'none';
+                    accountNumber.removeAttribute('required');
+                    routingNumber.removeAttribute('required');
+                    accountNumber.value = '';
+                    routingNumber.value = '';
+                }
+            });
         }
         
         function handleEmailLogin() {
@@ -1246,7 +1264,7 @@
                 
                 // Show welcome message
                 setTimeout(() => {
-                    alert('Welcome to British First Financial, Jory Wayne!');
+                    alert('Welcome to American First Financial, Rosalind Honest!');
                 }, 300);
             } else {
                 alert('Invalid PIN. Please try again.');
@@ -1381,7 +1399,7 @@
                         </div>
                     </div>
                     <div class="transaction-amount ${transaction.amount > 0 ? 'amount-positive' : 'amount-negative'}">
-                        ${transaction.amount > 0 ? '+' : '-'}£${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        ${transaction.amount > 0 ? '+' : ''}$${Math.abs(transaction.amount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                     </div>
                 `;
                 
@@ -1420,7 +1438,7 @@
                         </div>
                     </div>
                     <div class="transaction-amount ${transaction.amount > 0 ? 'amount-positive' : 'amount-negative'}">
-                        ${transaction.amount > 0 ? '+' : '-'}£${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        ${transaction.amount > 0 ? '+' : ''}$${Math.abs(transaction.amount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                     </div>
                 `;
                 
@@ -1442,7 +1460,7 @@
                     </div>
                     <h3 style="color: var(--primary); margin-bottom: 0.5rem;">${transaction.description}</h3>
                     <div style="font-size: 1.8rem; font-weight: 700; color: ${transaction.amount > 0 ? 'var(--success)' : 'var(--danger)'};">
-                        ${transaction.amount > 0 ? '+' : '-'}£${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        ${transaction.amount > 0 ? '+' : '-'}$${Math.abs(transaction.amount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                     </div>
                 </div>
                 
@@ -1491,10 +1509,34 @@
                 return;
             }
             
+            // Validate account and routing number for external transfers
+            if (toAccount === 'external') {
+                const accountNum = document.getElementById('accountNumber').value;
+                const routingNum = document.getElementById('routingNumber').value;
+                
+                if (!accountNum || !routingNum) {
+                    alert('Please enter account number and routing number for external transfer.');
+                    return;
+                }
+                
+                // Basic validation for routing number (9 digits)
+                if (!/^\d{9}$/.test(routingNum)) {
+                    alert('Routing number must be 9 digits.');
+                    return;
+                }
+            }
+            
             // Populate transfer modal
-            document.getElementById('transferModalAmount').textContent = '£' + amount.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('transferModalFrom').textContent = fromAccount.includes('Current') ? 'Premier Current' : 'Premium Savings';
-            document.getElementById('transferModalTo').textContent = toAccount === 'internal' ? 'Another BFF Account' : 'External Bank Account';
+            document.getElementById('transferModalAmount').textContent = '$' + amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('transferModalFrom').textContent = fromAccount.includes('Checking') ? 'Premier Checking' : 'High-Yield Savings';
+            
+            let toAccountText = toAccount === 'internal' ? 'Another AFF Account' : 'External Bank Account';
+            if (toAccount === 'external') {
+                const accountNum = document.getElementById('accountNumber').value;
+                const routingNum = document.getElementById('routingNumber').value;
+                toAccountText += ` (Acct: ${accountNum.slice(-4).padStart(accountNum.length, '*')}, Routing: ${routingNum.slice(-4).padStart(routingNum.length, '*')})`;
+            }
+            document.getElementById('transferModalTo').textContent = toAccountText;
             
             // Generate a reference number
             const refNumber = 'TRX-' + Date.now().toString().slice(-6);
@@ -1506,6 +1548,10 @@
             // Reset form
             transferForm.reset();
             
+            // Reset account and routing number fields visibility
+            accountNumberGroup.style.display = 'none';
+            routingNumberGroup.style.display = 'none';
+            
             // Reset session timer
             startSessionTimer();
         }
@@ -1515,7 +1561,7 @@
             let csvContent = "Date,Description,Amount,Type,Category\n";
             
             transactions.forEach(transaction => {
-                csvContent += `${transaction.date},${transaction.description},£${transaction.amount},${transaction.type},${transaction.category}\n`;
+                csvContent += `${transaction.date},${transaction.description},${transaction.amount},${transaction.type},${transaction.category}\n`;
             });
             
             // Create a Blob with the CSV content
@@ -1525,7 +1571,7 @@
             // Create a temporary link element to trigger the download
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'BFF_Transaction_History_' + new Date().toISOString().slice(0, 10) + '.csv';
+            link.download = 'AFF_Transaction_History_' + new Date().toISOString().slice(0, 10) + '.csv';
             
             // Trigger the download
             document.body.appendChild(link);
