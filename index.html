@@ -1039,17 +1039,17 @@
         const USER_PIN = "4121";
         const ACCOUNT_BALANCE = 40080.98;
         
-        // Transaction history data
+        // Transaction history data - updated: the 8600 transaction (Mar 19, 2026) now has status "pending"
         const transactions = [
-            { date: "Aug 15, 2024", description: "Salary Deposit", amount: 8000.00, type: "credit", category: "Income", icon: "fa-money-bill-wave" },
-            { date: "Aug 22, 2024", description: "Bonus Payment", amount: 30000.00, type: "credit", category: "Income", icon: "fa-gift" },
-            { date: "Sep 5, 2024", description: "Grocery Store", amount: -800.00, type: "debit", category: "Shopping", icon: "fa-shopping-cart" },
-            { date: "Sep 12, 2024", description: "Online Shopping", amount: -908.00, type: "debit", category: "Shopping", icon: "fa-shopping-bag" },
-            { date: "Oct 10, 2024", description: "Dividend Payment", amount: 2500.00, type: "credit", category: "Investment", icon: "fa-chart-line" },
-            { date: "Nov 18, 2024", description: "Car Payment", amount: -11200.00, type: "debit", category: "Auto", icon: "fa-car" },
-            { date: "Jan 5, 2024", description: "Year-End Bonus", amount: 15000.00, type: "credit", category: "Income", icon: "fa-award" },
-            { date: "Feb 15, 2025", description: "Charity Donation", amount: -2500.00, type: "debit", category: "Other", icon: "fa-hand-holding-heart" },
-            { date: "Feb 14, 2026", description: "Deposit", amount: 36600.00, type: "credit", category: "Deposit", icon: "fa-chart-pie" },
+            { date: "Aug 15, 2024", description: "Salary Deposit", amount: 8000.00, type: "credit", category: "Income", icon: "fa-money-bill-wave", status: "Completed" },
+            { date: "Aug 22, 2024", description: "Bonus Payment", amount: 30000.00, type: "credit", category: "Income", icon: "fa-gift", status: "Completed" },
+            { date: "Sep 5, 2024", description: "Grocery Store", amount: -800.00, type: "debit", category: "Shopping", icon: "fa-shopping-cart", status: "Completed" },
+            { date: "Sep 12, 2024", description: "Online Shopping", amount: -908.00, type: "debit", category: "Shopping", icon: "fa-shopping-bag", status: "Completed" },
+            { date: "Oct 10, 2024", description: "Dividend Payment", amount: 2500.00, type: "credit", category: "Investment", icon: "fa-chart-line", status: "Completed" },
+            { date: "Nov 18, 2024", description: "Car Payment", amount: -11200.00, type: "debit", category: "Auto", icon: "fa-car", status: "Completed" },
+            { date: "Jan 5, 2024", description: "Year-End Bonus", amount: 15000.00, type: "credit", category: "Income", icon: "fa-award", status: "Completed" },
+            { date: "Feb 15, 2025", description: "Charity Donation", amount: -2500.00, type: "debit", category: "Other", icon: "fa-hand-holding-heart", status: "Completed" },
+            { date: "Feb 14, 2026", description: "Deposit", amount: 36600.00, type: "credit", category: "Deposit", icon: "fa-chart-pie", status: "Completed" },
             { date: "Mar 19, 2026", description: "Transfer", amount: 8600.00, type: "credit", category: "Transfer", icon: "fa-clock", status: "pending" }
         ];
         
@@ -1452,6 +1452,12 @@
         }
         
         function showTransactionDetails(transaction) {
+            // Determine status style and icon
+            const isPending = transaction.status && transaction.status.toLowerCase() === 'pending';
+            const statusColor = isPending ? 'var(--warning)' : 'var(--success)';
+            const statusText = isPending ? 'Pending (Awaiting Verification)' : 'Completed';
+            const statusIcon = isPending ? 'fa-hourglass-half' : 'fa-check-circle';
+            
             // Populate transaction details
             transactionDetails.innerHTML = `
                 <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -1479,11 +1485,15 @@
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                         <span style="font-weight: 600;">Status:</span>
-                        <span style="color: var(--success); font-weight: 600;">Completed</span>
+                        <span style="color: ${statusColor}; font-weight: 600;">
+                            <i class="fas ${statusIcon}"></i> ${statusText}
+                        </span>
                     </div>
                 </div>
                 
-                <button class="login-btn" onclick="historyModal.style.display='none'" style="margin-top: 1.5rem;">Close</button>
+                ${isPending ? '<div class="pending-notice" style="margin-top: 1rem;"><i class="fas fa-info-circle"></i> This transaction is currently pending. Funds will be available once verification is complete.</div>' : ''}
+                
+                <button class="login-btn" onclick="document.getElementById(\'historyModal\').style.display=\'none\'" style="margin-top: 1.5rem;">Close</button>
             `;
             
             // Show modal
@@ -1494,12 +1504,12 @@
             e.preventDefault();
             
             const fromAccount = document.getElementById('fromAccount').value;
-            const toAccount = document.getElementById('toAccount').value;
+            const toAccountVal = document.getElementById('toAccount').value;
             const amount = parseFloat(document.getElementById('transferAmount').value);
             const notes = document.getElementById('transferNotes').value;
             
             // Validate inputs
-            if (!fromAccount || !toAccount || !amount || amount <= 0) {
+            if (!fromAccount || !toAccountVal || !amount || amount <= 0) {
                 alert('Please fill in all required fields with valid values.');
                 return;
             }
@@ -1510,7 +1520,7 @@
             }
             
             // Validate account and routing number for external transfers
-            if (toAccount === 'external') {
+            if (toAccountVal === 'external') {
                 const accountNum = document.getElementById('accountNumber').value;
                 const routingNum = document.getElementById('routingNumber').value;
                 
@@ -1530,8 +1540,8 @@
             document.getElementById('transferModalAmount').textContent = '$' + amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('transferModalFrom').textContent = fromAccount.includes('Checking') ? 'Premier Checking' : 'High-Yield Savings';
             
-            let toAccountText = toAccount === 'internal' ? 'Another AFF Account' : 'External Bank Account';
-            if (toAccount === 'external') {
+            let toAccountText = toAccountVal === 'internal' ? 'Another AFF Account' : 'External Bank Account';
+            if (toAccountVal === 'external') {
                 const accountNum = document.getElementById('accountNumber').value;
                 const routingNum = document.getElementById('routingNumber').value;
                 toAccountText += ` (Acct: ${accountNum.slice(-4).padStart(accountNum.length, '*')}, Routing: ${routingNum.slice(-4).padStart(routingNum.length, '*')})`;
@@ -1558,10 +1568,10 @@
         
         function downloadTransactionHistory() {
             // Create CSV content
-            let csvContent = "Date,Description,Amount,Type,Category\n";
+            let csvContent = "Date,Description,Amount,Type,Category,Status\n";
             
             transactions.forEach(transaction => {
-                csvContent += `${transaction.date},${transaction.description},${transaction.amount},${transaction.type},${transaction.category}\n`;
+                csvContent += `${transaction.date},${transaction.description},${transaction.amount},${transaction.type},${transaction.category},${transaction.status || "Completed"}\n`;
             });
             
             // Create a Blob with the CSV content
